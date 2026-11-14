@@ -1,6 +1,7 @@
 {
   "name": "@mingjue8888/base-dependencies",
   "version": "1.0.0",
+  "repository": "https://github.com/mingjue8888/base-dependencies",
   "dependencies": {
     "@types/lodash": "^4.17.27",
     "@types/node": "^26.6.6",
