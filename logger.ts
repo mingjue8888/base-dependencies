@@ -4,7 +4,8 @@ import winston from "winston";
 import dayjs from "./dayjs";
 
 const level =
-    Joi.attempt(process.env.LOGGER_LEVEL, Joi.string().required().default("debug"));
+    Joi.attempt(process.env.LOGGER_LEVEL,
+        Joi.string().required().default("debug"));
 
 const levels = {
     error: 0,
