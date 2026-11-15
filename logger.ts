@@ -1,5 +1,10 @@
+import "dotenv/config";
+import Joi from "joi";
 import winston from "winston";
 import dayjs from "./dayjs";
+
+const level =
+    Joi.attempt(process.env.LOGGER_LEVEL, Joi.string().required().default("debug"));
 
 const levels = {
     error: 0,
@@ -18,6 +23,7 @@ const colors = {
 }
 
 const consoleLog = new winston.transports.Console({
+    level,
     format: winston.format.combine(
         winston.format.colorize({ colors }),
         winston.format.align(),
