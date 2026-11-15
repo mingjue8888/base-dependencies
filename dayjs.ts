@@ -11,7 +11,7 @@ dayjs.extend(timezone);
 dayjs.extend(relativeTime);
 dayjs.extend(weekOfYear);
 dayjs.extend(quarterOfYear);
-dayjs.tz.setDefault("Asia/Hongkong");
+dayjs.tz.setDefault("Asia/Hong_Kong");
 dayjs.locale("zh-cn");
 
 export default dayjs;
