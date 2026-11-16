@@ -1,7 +1,7 @@
 import "dotenv/config";
 import Joi from "joi";
 import winston from "winston";
-import dayjs from "./dayjs";
+import dayjs from "../dayjs";
 
 const level =
     Joi.attempt(process.env.LOGGER_LEVEL,
