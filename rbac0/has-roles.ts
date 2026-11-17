@@ -1,5 +1,5 @@
 import _ from "lodash";
-import RBAC0 from "./index";
+import {RBAC0} from "./index";
 
 export default function hasRoles(user: RBAC0 | undefined, roles: string[]): boolean {
     if (!user) return false;
