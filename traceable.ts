@@ -1,7 +1,14 @@
-class TraceError extends Error {}
+export class TraceError extends Error {}
 
-export const Traceable = <T extends object>(p: Promise<T>) => ({
-    add: <K extends string, E extends object>(key: K, getValue: (p: T) => Promise<E>) =>
+export interface Traceable<T extends object> {
+    add: <K extends string, E extends object>(key: K, getValue: (x: T) => Promise<E>) => Traceable<T & Record<K, E>>;
+    filter: (f: (x: T) => boolean, orErrorMessage: string) => Traceable<T>;
+    merge: <E extends object>(f: (x: T) => E) => Traceable<E>;
+    trace: () => Promise<T>;
+}
+
+export const Traceable = <T extends object>(p: Promise<T>): Traceable<T> => ({
+    add: <K extends string, E extends object>(key: K, getValue: (x: T) => Promise<E>) =>
         Traceable(p.then(x => getValue(x).then(y => ({ ...x, [key]: y }) as T & Record<K, E>))),
 
     filter: (f: (x: T) => boolean, orErrorMessage: string) =>
