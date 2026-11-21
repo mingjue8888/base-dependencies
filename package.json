@@ -1,6 +1,6 @@
 {
   "name": "@mingjue8888/base-dependencies",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "repository": "github:mingjue8888/base-dependencies",
   "dependencies": {
     "@types/bcrypt": "^6.0.0",
