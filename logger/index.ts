@@ -3,7 +3,7 @@ import Joi from "joi";
 import winston from "winston";
 import dayjs from "../dayjs";
 
-const level =
+const LOGGER_LEVEL =
     Joi.attempt(process.env.LOGGER_LEVEL,
         Joi.string().required().default("debug"));
 
@@ -24,7 +24,7 @@ const colors = {
 }
 
 const consoleLog = new winston.transports.Console({
-    level,
+    level: LOGGER_LEVEL,
     format: winston.format.combine(
         winston.format.colorize({ colors }),
         winston.format.align(),
