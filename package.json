@@ -1,6 +1,6 @@
 {
   "name": "@mingjue8888/base-dependencies",
-  "version": "1.6.6",
+  "version": "1.6.7",
   "repository": "github:mingjue8888/base-dependencies",
   "dependencies": {
     "@mingjue8888/traceable": "^1.0.0",
