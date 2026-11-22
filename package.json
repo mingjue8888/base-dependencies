@@ -3,6 +3,7 @@
   "version": "1.6.6",
   "repository": "github:mingjue8888/base-dependencies",
   "dependencies": {
+    "@mingjue8888/traceable": "^1.0.0",
     "@types/bcrypt": "^6.0.0",
     "@types/lodash": "^4.17.27",
     "@types/node": "^26.6.6",
