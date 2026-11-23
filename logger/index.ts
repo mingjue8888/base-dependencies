@@ -37,7 +37,7 @@ export default winston.createLogger({
     format: winston.format.combine(
         winston.format.errors({ stack: true }),
         winston.format.splat(),
-        winston.format.timestamp({ format: () => dayjs().tz().toISOString() }),
+        winston.format.timestamp({ format: () => dayjs().tz().format() }),
     ),
     transports: [
         consoleLog,
