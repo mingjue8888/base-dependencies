@@ -9,11 +9,11 @@ import Joi from "joi";
 
 const DAYJS_TIMEZONE =
     Joi.attempt(process.env.DAYJS_TIMEZONE,
-        Joi.string().required().default("Asia/Hong_Kong"));
+        Joi.string().default("Asia/Hong_Kong"));
 
 const DAYJS_LOCALE =
     Joi.attempt(process.env.DAYJS_LOCALE,
-        Joi.string().required().default("zh-cn"));
+        Joi.string().default("zh-cn"));
 
 require(`dayjs/locale/${DAYJS_LOCALE}`);
 

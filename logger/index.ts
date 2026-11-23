@@ -5,7 +5,7 @@ import dayjs from "../dayjs";
 
 const LOGGER_LEVEL =
     Joi.attempt(process.env.LOGGER_LEVEL,
-        Joi.string().required().default("debug"));
+        Joi.string().default("debug"));
 
 const levels = {
     error: 0,
