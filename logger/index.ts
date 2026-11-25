@@ -27,8 +27,8 @@ const consoleLog = new winston.transports.Console({
     level: LOGGER_LEVEL,
     format: winston.format.combine(
         winston.format.colorize({ colors }),
-        winston.format.align(),
-        winston.format.printf(log => `${log.timestamp} ${log.level}: ${log.stack || log.message}`),
+        // winston.format.align(),
+        winston.format.printf(log => `${log.timestamp} ${log.level.padEnd(6, " ")}: ${log.stack || log.message}`),
     )
 });
 
