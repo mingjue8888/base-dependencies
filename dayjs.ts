@@ -8,12 +8,10 @@ import quarterOfYear from "dayjs/plugin/quarterOfYear";
 import Joi from "joi";
 
 const DAYJS_TIMEZONE =
-    Joi.attempt(process.env.DAYJS_TIMEZONE,
-        Joi.string().default("Asia/Hong_Kong"));
+    Joi.attempt(process.env.DAYJS_TIMEZONE, Joi.string().default("Asia/Hong_Kong"));
 
 const DAYJS_LOCALE =
-    Joi.attempt(process.env.DAYJS_LOCALE,
-        Joi.string().default("zh-cn"));
+    Joi.attempt(process.env.DAYJS_LOCALE, Joi.string().default("zh-cn"));
 
 require(`dayjs/locale/${DAYJS_LOCALE}`);
 
