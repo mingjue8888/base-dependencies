@@ -1,4 +1,5 @@
 import "dotenv/config";
+import color from "console-log-colors";
 import Joi from "joi";
 import winston from "winston";
 import dayjs from "../dayjs";
@@ -16,19 +17,22 @@ const levels = {
 }
 
 const colors = {
-    error: "red",
-    warn: "yellow",
-    info: "green",
-    http: "magenta",
-    debug: "blue",
+    error: color.red,
+    warn: color.yellow,
+    info: color.green,
+    http: color.magenta,
+    debug: color.blue,
 }
 
 const consoleLog = new winston.transports.Console({
     level: LOGGER_LEVEL,
     format: winston.format.combine(
-        winston.format.colorize({ colors }),
+        // winston.format.colorize({ colors }),
         // winston.format.align(),
-        winston.format.printf(log => `${log.timestamp} ${log.level.padEnd(6, " ")}: ${log.stack || log.message}`),
+        winston.format.printf(({ timestamp, level, message, stack }) =>
+            `${color.gray(timestamp)} ` +
+            `${(colors[level] || color.white)(level.toUpperCase().padEnd(5, " "))}: ` +
+            `${stack || message}`),
     )
 });
 
