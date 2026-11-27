@@ -2,10 +2,16 @@ import "dotenv/config";
 import color from "console-log-colors";
 import Joi from "joi";
 import winston from "winston";
-import dayjs from "../dayjs";
+import dayjs from "./dayjs";
 
-const LOGGER_LEVEL =
-    Joi.attempt(process.env.LOGGER_LEVEL, Joi.string().default("debug"));
+const confSchema = Joi.object<{
+    LOGGER_LEVEL: string;
+}>({
+    LOGGER_LEVEL: Joi.string()
+        .default("debug"),
+})
+
+const conf = Joi.attempt(process.env, confSchema, { allowUnknown: true });
 
 const levels = {
     error: 0,
@@ -24,7 +30,7 @@ const colors = {
 }
 
 const consoleLog = new winston.transports.Console({
-    level: LOGGER_LEVEL,
+    level: conf.LOGGER_LEVEL,
     format: winston.format.combine(
         // winston.format.colorize({ colors }),
         // winston.format.align(),
@@ -35,7 +41,7 @@ const consoleLog = new winston.transports.Console({
     )
 });
 
-export default winston.createLogger({
+const logger = winston.createLogger({
     levels,
     format: winston.format.combine(
         winston.format.errors({ stack: true }),
@@ -46,4 +52,6 @@ export default winston.createLogger({
         consoleLog,
     ]
 });
+
+export default logger;
 

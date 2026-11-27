@@ -7,20 +7,27 @@ import weekOfYear from "dayjs/plugin/weekOfYear";
 import quarterOfYear from "dayjs/plugin/quarterOfYear";
 import Joi from "joi";
 
-const DAYJS_TIMEZONE =
-    Joi.attempt(process.env.DAYJS_TIMEZONE, Joi.string().default("Asia/Hong_Kong"));
+const confSchema = Joi.object<{
+    DAYJS_TIMEZONE: string;
+    DAYJS_LOCALE: string;
+}>({
+    DAYJS_TIMEZONE: Joi.string()
+        .default("Asia/Hong_Kong"),
 
-const DAYJS_LOCALE =
-    Joi.attempt(process.env.DAYJS_LOCALE, Joi.string().default("zh-cn"));
+    DAYJS_LOCALE: Joi.string()
+        .default("zh-cn"),
+})
 
-require(`dayjs/locale/${DAYJS_LOCALE}`);
+const conf = Joi.attempt(process.env, confSchema, { allowUnknown: true });
+
+require(`dayjs/locale/${conf.DAYJS_LOCALE}`);
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(relativeTime);
 dayjs.extend(weekOfYear);
 dayjs.extend(quarterOfYear);
-dayjs.tz.setDefault(DAYJS_TIMEZONE);
-dayjs.locale(DAYJS_LOCALE);
+dayjs.tz.setDefault(conf.DAYJS_TIMEZONE);
+dayjs.locale(conf.DAYJS_LOCALE);
 
 export default dayjs;
